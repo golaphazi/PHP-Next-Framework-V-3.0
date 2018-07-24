@@ -6,6 +6,7 @@ class indexController Extends NX_db{
 		parent::__construct();
 		$this->userId   = $this->session->get_session('userId', 0);
 		$this->userLogin   = $this->session->get_session('userLogin');
+		$this->login = $this->model('registration/login');
 	}
 	
 	public function indexAction(){
