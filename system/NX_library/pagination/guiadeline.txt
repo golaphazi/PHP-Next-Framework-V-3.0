@@ -1,0 +1,17 @@
+
+$getOffset = isset($_GET['page']) ? $_GET['page'] : 1;
+$pagiData = array();
+$pagiData['total_count'] = 100; // total row
+$pagiData['offset_name'] = 'page';
+$pagiData['offset'] = $getOffset;
+$pagiData['limit'] = 2; // Per page
+$pagiData['ul_class'] = 'pagination'; // ul class
+$pagiData['li_class'] = 'page-item'; 
+$pagiData['a_class'] = 'page-link'; 
+$pagiData['active_class'] = 'active'; 
+$pagiData['pre_text'] = '&laquo;'; 
+$pagiData['next_text'] = '&raquo;'; 
+
+$offset = $this->pagi->initialize($pagiData);
+
+$this->pagi->create_link();

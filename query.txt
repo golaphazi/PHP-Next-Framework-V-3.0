@@ -1,0 +1,22 @@
+		$datalist1 = $this->query_start();
+		$datalist1->query("SELECT * FROM hot_menu_home");
+		//$datalist1->having("MENU_SUB_ID = '10'");
+		//echo '<pre>';print_r($datalist1->result());
+		
+		
+		$datalist = $this->query_start();
+		//$datalist->select(array('tab.MENU_ID', 'tab.MENU_NAME', 'tab.MENU_URL'));
+		//$datalist->select_sub(array('SUM' => 'MENU_ID', 'MIN' => 'MENU_ID'));
+		$datalist->from(array('hot_menu_home AS tab'));
+		$datalist->where(array('tab.MENU_SUB_ID' => array(array('tab.MENU_SUB_ID'), 'AND'), 'tab.MENU_STATUS' => 'Active'));
+		$datalist->order(array(array('tab.MENU_ID', 'tab.MENU_NAME'), 'ASC'));
+		//$datalist->limit('0,10');
+		//$datalist->group(array('tab.MENU_SUB_ID', 'tab.MENU_NAME'));
+		$datalist->join_where('INNER', 'hot_menu_home', array('tab.MENU_SUB_ID' => 'tab.MENU_ID', 'tab.MENU_ID' => 'tab.MENU_SUB_ID'));
+		//$datalist->join_where('LEFT', 'hot_menu_home', array('hot_menu_home.MENU_SUB_ID' => 'hot_menu_home.MENU_ID', 'hot_menu_home.MENU_ID' => 'hot_menu_home.MENU_SUB_ID'));
+		//$datalist->having(array('tab.MENU_SUB_ID' => array('ghh', 'AND'), 'tab.MENU_SUB_IDe' => '0'));
+		$datalist->query_print();
+		
+		//echo '<pre>';print_r($datalist->fetch());
+		
+		$datalist->query_close();
